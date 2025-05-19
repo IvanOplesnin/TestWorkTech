@@ -1,6 +1,4 @@
-set shell := ["bash", "-e", "-u", "-x", "-o", "pipefail", "-c"]
-
-default: help
+set shell := ["bash", "-c"]
 
 venv:
     python -m venv .venv
@@ -14,7 +12,6 @@ serve: install
     . .venv/bin/activate
     uvicorn backend:app --reload --host 0.0.0.0 --port 8000
 
-
 get_test_database: install
     . .venv/bin/activate
     python init_db.py
@@ -25,9 +22,6 @@ clear_database: install
 
 up: install get_test_database serve
 
-
 test: install
     . .venv/bin/activate
     pytest --maxfail=1 --disable-warnings -q
-
-
