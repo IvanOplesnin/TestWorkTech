@@ -1,27 +1,21 @@
-set shell := ["bash", "-c"]
+set shell := ["cmd.exe", "/c"]
 
 venv:
     python -m venv .venv
 
 install: venv
-    . .venv/bin/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
+    .venv\Scripts\activate.bat && pip install -r requirements.txt
 
 serve: install
-    . .venv/bin/activate
-    uvicorn backend:app --reload --host 0.0.0.0 --port 8000
+    .venv\Scripts\python.exe -m uvicorn backend:app
+
 
 get_test_database: install
-    . .venv/bin/activate
-    python init_db.py
+    .venv\Scripts\python.exe init_db.py
 
 clear_database: install
-    . .venv/bin/activate
-    python clear_database.py
+    .venv\Scripts\python.exe clear_db.py
 
 up: install get_test_database serve
 
-test: install
-    . .venv/bin/activate
-    pytest --maxfail=1 --disable-warnings -q
+
