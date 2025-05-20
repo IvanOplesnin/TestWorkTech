@@ -23,4 +23,3 @@ class ResponseTimeProjectForProject(TimeProjectBase):
 
     user: ResponseUser = Field(..., description="Пользователь")
     model_config = ConfigDict(from_attributes=True)
-

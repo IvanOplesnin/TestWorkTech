@@ -1,7 +1,5 @@
 from fastapi import APIRouter, Depends
 
-from backend.db_conn import get_session
-from backend.models import User
 from backend.schemas import ResponseUser
 from backend.security.dependencies import get_current_user
 

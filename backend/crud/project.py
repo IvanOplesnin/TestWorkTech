@@ -2,8 +2,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import joinedload
 
-from backend.models import Project, TimeProject, Base
-from backend.schemas import CreateTimeProject, CreateUser
+from backend.models import Project, TimeProject
 
 
 async def create_project(name: str, session: AsyncSession) -> int:
@@ -49,5 +48,3 @@ async def delete_project(project_id: int, session: AsyncSession) -> None:
     pr = await get_project(project_id, session)
     await session.delete(pr)
     await session.commit()
-
-

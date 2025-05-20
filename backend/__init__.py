@@ -2,7 +2,6 @@ from fastapi import FastAPI
 
 from backend.api import login_router, user_router, manager_router
 
-
 app = FastAPI()
 
 app.include_router(login_router)

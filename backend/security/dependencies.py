@@ -14,7 +14,7 @@ SECRET_KEY = Config.SECRET_KEY
 async def get_current_user(token: str = Depends(oath2_scheme), session=Depends(get_session)):
     try:
         payload = check_token(token)
-    except:
+    except Exception:
         raise HTTPException(status_code=401, detail="Invalid token")
     user = await get_user_by_username(payload["username"], session)
     if not user:
@@ -24,5 +24,5 @@ async def get_current_user(token: str = Depends(oath2_scheme), session=Depends(g
 
 async def get_current_manager(user=Depends(get_current_user)):
     if not user.manager:
-        raise HTTPException(status_code=403, detail="")
+        raise HTTPException(status_code=403, detail="You don't have permission.")
     return user

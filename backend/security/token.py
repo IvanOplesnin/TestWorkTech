@@ -31,9 +31,9 @@ def check_token(token):
             algorithms=["HS256"]
         )
         return decode
-    except jwt.exceptions.InvalidSignatureError as e:
+    except jwt.exceptions.InvalidSignatureError:
         raise jwt.exceptions.InvalidSignatureError('Invalid key')
-    except jwt.exceptions.ExpiredSignatureError as e:
+    except jwt.exceptions.ExpiredSignatureError:
         raise jwt.exceptions.ExpiredSignatureError('Expired token')
-    except jwt.exceptions.InvalidTokenError as e:
+    except jwt.exceptions.InvalidTokenError:
         raise jwt.exceptions.InvalidTokenError('Invalid token')
